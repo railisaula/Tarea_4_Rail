@@ -15,38 +15,50 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class MyGdxGame implements ApplicationListener {
 	private Texture texture;
 	Stage stage;
-	Image image;
-	Image image2;
-	Image image3;
+	Image figura;
+	Image figura2;
+	Image figura3;
+	Image figura4;
+	Image figura5;
+	Image figura6;
+	boolean izquierda=false;
+
+	
 	@Override
 	public void create() {		
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 		
-		texture = new Texture(Gdx.files.internal("data/pacman_multi_agent.png"));
+		texture = new Texture(Gdx.files.internal("data/circulo.png"));
 		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 512);
+		TextureRegion region = new TextureRegion(texture, 0, 0, 128, 128);
 		
 		stage = new Stage();
-		image = new Image(region);
+		figura = new Image(region);
 		stage = new Stage();
-		image2 = new Image(new Texture(Gdx.files.internal("data/pacman.png")));
-		stage = new Stage();
-		image3 = new Image(new Texture(Gdx.files.internal("data/th_Pacman.png")));
+		figura2 = new Image(new Texture(Gdx.files.internal("data/rectangulo.png")));
+		figura3 = new Image(new Texture(Gdx.files.internal("data/estrella.png")));
+		figura4 = new Image(new Texture(Gdx.files.internal("data/triangulo.png")));
+		figura5 = new Image(new Texture(Gdx.files.internal("data/pentagono.png")));
+		
 	
 	
-		image.setScale(1.5f, 1.5f);
-	 image.setX(50);
-	image.setY(-300);
-	 image2.setX(5);
-	 image2.setY(-90);
-	 image3.setX(570);
-	 image3.setY(-100);
+	
+		figura.setX(325);
+		figura.setY(100);
+		figura2.setX(100);
+		figura2.setY(300);
+		figura3.setX(500);
+		figura3.setY(150);
+		figura5.setX(200);
+		figura5.setY(200);
 
-		stage.addActor(image);
-		stage.addActor(image2);
-		stage.addActor(image3);
+		stage.addActor(figura);
+		stage.addActor(figura2);
+		stage.addActor(figura3);
+		stage.addActor(figura4);
+		stage.addActor(figura5);
 	
 	}
 
@@ -59,8 +71,32 @@ public class MyGdxGame implements ApplicationListener {
 	public void render() {		
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-		image2.setRotation(image.getRotation()+5);
+		figura2.setRotation(figura2.getRotation()-1);
+		figura.setX(figura.getX()+2);
+		figura3.setY(figura3.getY()+3);
+		figura3.setX(figura3.getX()-1);
+		figura3.setScale(figura3.getScaleX()-0.1f,figura3.getScaleY()+0.1f);
 		
+		if (figura4.getX()>300)
+		{
+			izquierda=true;
+		}
+		if(figura4.getX()<1)
+		{
+			izquierda = false;
+		}
+
+		if (izquierda==true)
+		{
+		figura4.setX(figura4.getX()-1);
+		}
+		else
+		{
+			figura4.setX(figura4.getX()+1);
+		}
+		
+		
+	
 		stage.draw();
 	}
 
@@ -70,9 +106,11 @@ public class MyGdxGame implements ApplicationListener {
 
 	@Override
 	public void pause() {
+		
 	}
 
 	@Override
 	public void resume() {
+	
 	}
 }

@@ -8,8 +8,8 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "SEMANA_P41";
 		cfg.useGL20 = false;
-		cfg.width = 750;
-		cfg.height = 500;
+		cfg.width = 850;
+		cfg.height = 800;
 		
 		new LwjglApplication(new MyGdxGame(), cfg);
 	}
